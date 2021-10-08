@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  app:
+    command: tail -f /dev/null
+    image: golang:1.12.6-stretch
+    ports:
+      - 8000:8000
+    volumes:
+      # This is go modules cache, without it you will have to
+      # re-download all dependencies after restarting container
+      - modules:/go/pkg/mod/cache
+      - ./:/code:cached
+    working_dir: /code
+    
+
+volumes:
+  modules:
+    driver: local
