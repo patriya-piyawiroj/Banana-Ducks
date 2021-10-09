@@ -1,0 +1,61 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  BananaDuck:
+    properties:
+      ID:
+        type: string
+      Owner:
+        type: string
+    type: object
+    x-go-package: github.com/patriya-piyawiroj/banana-ducks/internal/app/bnnd
+host: some-url.com
+info:
+  description: Documentation of our awesome API.
+  title: awesome.
+  version: 1.0.0
+paths:
+  /banana-ducks:
+    post:
+      description: Creates one banana duck
+      operationId: createBananaDuck
+      parameters:
+      - description: Banana Duck to be created
+        in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/BananaDuck'
+      responses:
+        "200":
+          $ref: '#/responses/bananaDuck'
+      tags:
+      - banana-ducks
+  /v1/banana-ducks:
+    get:
+      operationId: getAllBananaDucks
+      responses:
+        "200":
+          $ref: '#/responses/bananaDuckArray'
+      summary: Get all banana ducks.
+      tags:
+      - banana-ducks
+produces:
+- application/json
+responses:
+  bananaDuck:
+    description: ""
+    schema:
+      $ref: '#/definitions/BananaDuck'
+  bananaDuckArray:
+    description: ""
+    schema:
+      items:
+        $ref: '#/definitions/BananaDuck'
+      type: array
+schemes:
+- http
+securityDefinitions:
+  basic:
+    type: basic
+swagger: "2.0"

@@ -9,12 +9,14 @@ type BNNDManager struct {
 	bnndRepo BNNDRepo
 }
 
+// NewBNNDManager creates a new BNNDService for managing ducks
 func NewBNNDManager(bnndRepo BNNDRepo) BNNDService {
 	return &BNNDManager{
 		bnndRepo: bnndRepo,
 	}
 }
 
+// GetAllBananaDucks returns all ducks found of type []BananaDuck
 func (s *BNNDManager) GetAllBananaDucks() ([]BananaDuck, error) {
 	ducks, err := s.bnndRepo.FindAll()
 	if err != nil {
@@ -23,6 +25,7 @@ func (s *BNNDManager) GetAllBananaDucks() ([]BananaDuck, error) {
 	return ducks, nil
 }
 
+// CreateBananaDuck returns the created duck of type BananaDuck
 func (s *BNNDManager) CreateBananaDuck(d BananaDuck) error {
 	err := s.bnndRepo.Insert(d)
 	if err != nil {

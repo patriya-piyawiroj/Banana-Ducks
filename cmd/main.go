@@ -1,11 +1,13 @@
+//go:generate swagger generate spec
 package main
 
 import (
-	"github.com/labstack/echo/v4"
 	"github.com/patriya-piyawiroj/banana-ducks/internal/app/bnnd"
 	"github.com/patriya-piyawiroj/banana-ducks/internal/app/shop"
 
-	"BananaDucks/internal/app/shop"
+	_ "github.com/patriya-piyawiroj/banana-ducks/docs"
+
+	"github.com/labstack/echo/v4"
 )
 
 // Main function

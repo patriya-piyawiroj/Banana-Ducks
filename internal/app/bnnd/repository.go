@@ -18,6 +18,7 @@ type BNNDMongoRepo struct {
 	c *mongo.Collection
 }
 
+// NewBNNDRepo
 func NewBNNDRepo() BNNDRepo {
 	return &BNNDMongoRepo{}
 }
@@ -26,7 +27,7 @@ func NewBNNDRepo() BNNDRepo {
 func (r *BNNDMongoRepo) Connect(ctx context.Context, addr, db string) error {
 	// Attempt connection
 	log.Println("Attemptign to connect to %s %s", addr, db)
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(m.addr))
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(addr))
 	if err != nil {
 		log.Error(err)
 		return err
@@ -37,27 +38,18 @@ func (r *BNNDMongoRepo) Connect(ctx context.Context, addr, db string) error {
 	if err != nil {
 		return err
 	}
-	r.c = client.Database(addr).Collect(db)
+	r.c = client.Database(addr).Collection(db)
 
-	// TODO: Add indexes
-	// idxm := mongo.IndexModel{
-	// 	Keys: bson.M{
-	// 		"" : 1,
-	// 	}, Options: nil,
-	// }
-	// idxm.Options.SetBackground(true) // must run in background
-	// _, err := r.c.Indexes().CreateOne(ctx, idxm)
-	// if err != nil {
-	// 	return err
-	// }
+	// TODO: Work on db indexing and performance
+	return nil
 }
 
-// FindAll BananaDucks
+// FindAll BananaDucks from db
 func (r *BNNDMongoRepo) FindAll() ([]BananaDuck, error) {
 	return []BananaDuck{}, nil
 }
 
-// Insert BananaDuck
+// Insert BananaDuck to db
 func (r *BNNDMongoRepo) Insert(d BananaDuck) error {
 	return nil
 }
