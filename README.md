@@ -1,20 +1,24 @@
 # Banana-Ducks
-
-An overkill solution for selling ducks.
-It's scalable though.
+Work still in progress!! Not much to look at here yet 
 
 ```
-├── build: Packaging and Continuous Integration
+├── build
+├── cmd
 ├── configs
-├── deployments: IaaS, PaaS, system and container orchestration deployment configurations and templates
-├── init: System init (systemd, upstart, sysv) and process manager/supervisor (runit, supervisord) configs
+├── deployments
+├── docs
+├── init
 ├── internal
 │   ├── app
+│   │    ├── bnnd
+│   │    ├── middleware
+│   │    ├── order
+│   │    └── pkg
 │   └── pkg
-├── scripts: Scripts to perform various build, install, analysis, etc operations.
+├── test
+├── scripts
 ├── vendor
 └── web
 │   ├── app
 │   └── static
 ```
-Sample project layout: https://github.com/golang-standards/project-layout 
