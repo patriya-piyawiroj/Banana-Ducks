@@ -36,7 +36,7 @@ import (
 // swagger:route POST /v1/banana-ducks banana-ducks createBananaDuck
 // Creates one banana duck.
 // responses:
-//   200: bananaDuck
+//   200: bananaDuckSwagger
 // Returns created banana duck (BananaDuck)
 
 // swagger:response bananaDuckArray
@@ -49,6 +49,12 @@ type bananaDuckArrayWrapper struct {
 type bananaDuckWrapper struct {
 	// in:body
 	Body bnnd.BananaDuck
+}
+
+// swagger:response bananaDuckSwagger
+type bananaDuckSwaggerWrapper struct {
+	// in:body
+	Body bnnd.BananaDuckSwagger
 }
 
 // swagger:parameters createBananaDuck

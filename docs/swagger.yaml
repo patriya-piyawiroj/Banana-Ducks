@@ -10,15 +10,45 @@ definitions:
         type: string
     type: object
     x-go-package: github.com/patriya-piyawiroj/banana-ducks/internal/app/bnnd
+  BananaDuckSwagger:
+    allOf:
+    - properties:
+        ID:
+          type: string
+        Owner:
+          type: string
+      type: object
+    - properties:
+        Data:
+          $ref: '#/definitions/TheWayYouWouldWriteItInKBMF'
+      type: object
+    x-go-package: github.com/patriya-piyawiroj/banana-ducks/internal/app/bnnd
+  TheWayYouWouldWriteItInKBMF:
+    properties:
+      Val1:
+        type: string
+      Val2:
+        type: string
+      Val3:
+        type: string
+    type: object
+    x-go-package: github.com/patriya-piyawiroj/banana-ducks/internal/app/bnnd
 host: some-url.com
 info:
   description: Documentation of our awesome API.
   title: awesome.
   version: 1.0.0
 paths:
-  /banana-ducks:
+  /v1/banana-ducks:
+    get:
+      operationId: getAllBananaDucks
+      responses:
+        "200":
+          $ref: '#/responses/bananaDuckArray'
+      summary: Get all banana ducks.
+      tags:
+      - banana-ducks
     post:
-      description: Creates one banana duck
       operationId: createBananaDuck
       parameters:
       - description: Banana Duck to be created
@@ -28,16 +58,8 @@ paths:
           $ref: '#/definitions/BananaDuck'
       responses:
         "200":
-          $ref: '#/responses/bananaDuck'
-      tags:
-      - banana-ducks
-  /v1/banana-ducks:
-    get:
-      operationId: getAllBananaDucks
-      responses:
-        "200":
-          $ref: '#/responses/bananaDuckArray'
-      summary: Get all banana ducks.
+          $ref: '#/responses/bananaDuckSwagger'
+      summary: Creates one banana duck.
       tags:
       - banana-ducks
 produces:
@@ -53,6 +75,10 @@ responses:
       items:
         $ref: '#/definitions/BananaDuck'
       type: array
+  bananaDuckSwagger:
+    description: ""
+    schema:
+      $ref: '#/definitions/BananaDuckSwagger'
 schemes:
 - http
 securityDefinitions:

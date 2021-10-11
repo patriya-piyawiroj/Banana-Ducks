@@ -1,7 +1,7 @@
 package bnnd
 
 type BNNDService interface {
-	GetAllBananaDucks() ([]BananaDuck, error)
+	GetAllBananaDucks() (interface{}, error)
 	CreateBananaDuck(d BananaDuck) error
 }
 
@@ -17,7 +17,7 @@ func NewBNNDManager(bnndRepo BNNDRepo) BNNDService {
 }
 
 // GetAllBananaDucks returns all ducks found of type []BananaDuck
-func (s *BNNDManager) GetAllBananaDucks() ([]BananaDuck, error) {
+func (s *BNNDManager) GetAllBananaDucks() (interface{}, error) {
 	ducks, err := s.bnndRepo.FindAll()
 	if err != nil {
 		return []BananaDuck{}, err
