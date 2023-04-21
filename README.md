@@ -1,5 +1,5 @@
 # Banana-Ducks
-Work still in progress!! Not much to look at here yet 
+A go server starter kit
 
 ```
 ├── build
